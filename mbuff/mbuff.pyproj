@@ -22,8 +22,23 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="parsable_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="message.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="parsable.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="package.py" />
     <Compile Include="package_test.py" />
+    <Compile Include="type.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="type_test.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
