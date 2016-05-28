@@ -6,7 +6,7 @@ class parsable:
         if regex is None:
             raise ValueError('regex is null')
         if not isinstance(regex, str):
-            raise TypeError('regex is null')
+            raise TypeError('regex is not a string')
         self.regex = re.compile(regex)
         if stream is None:
             raise ValueError('stream is null')
