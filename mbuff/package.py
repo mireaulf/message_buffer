@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 import re
+from from_stream import from_stream
 
-class package:
+class package(from_stream):
     regex = re.compile('package ([a-zA-Z0-9_]+);')
     def __init__(self, stream):
-        if stream is None:
-            raise ValueError('stream is null')
-        if not isinstance(stream, str):
-            raise TypeError('stream is not string')
-        self.stream = stream;
+        super().__init__(package.regex, stream)
         self.name = ''
     def parse(self):
         search_res = self.regex.match(self.stream)
