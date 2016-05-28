@@ -21,17 +21,21 @@ class parsable_test(unittest.TestCase):
         regex = 'regex'
         p = parsable(regex, '')
         res = p.parse()
-        self.assertEqual(False, res)
+        self.assertEqual(False, res[0])
+        self.assertEqual(None, res[1])
         p = parsable(regex, ' regex')
         res = p.parse()
-        self.assertEqual(False, res)
+        self.assertEqual(False, res[0])
+        self.assertEqual(None, res[1])
         stream = ' regex; asd '
         p = parsable(regex, stream)
         res = p.parse()
-        self.assertEqual(False, res)
+        self.assertEqual(False, res[0])
+        self.assertEqual(None, res[1])
         p = parsable(regex, stream.strip())
         res = p.parse()
-        self.assertEqual(True, res)
+        self.assertEqual(True, res[0])
+        self.assertNotEqual(None, res[1])
 
 if __name__ == '__main__':
     unittest.main()

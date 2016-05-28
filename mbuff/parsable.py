@@ -15,4 +15,5 @@ class parsable:
         self.stream = stream
     def parse(self):
         search_res = self.regex.match(self.stream)
-        return search_res is not None
+        found = search_res is not None
+        return (found, search_res)
