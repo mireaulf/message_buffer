@@ -3,7 +3,8 @@ import unittest
 from type import type
 
 class type_test(unittest.TestCase):
-    def parse(self, type_type, type_name):
+    def parse(self, type_type):
+        type_name = 'foo'
         stream = ' {0} {1}; {0} stuff '.format(type_type, type_name)
         rest = ' {0} stuff'.format(type_type)      
         t = type(stream)
@@ -33,11 +34,8 @@ class type_test(unittest.TestCase):
         self.assertEqual(None, res[1])
 
     def test_parse(self):        
-        type_name = 'foo'
-        self.parse('bool', type_name)
-        self.parse('int8', type_name)
-        self.parse('int32', type_name)
-        self.parse('string', type_name)
+        for t in type.types:
+            self.parse(t)
 
 if __name__ == '__main__':
     unittest.main()
