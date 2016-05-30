@@ -21,6 +21,8 @@ class message_test(unittest.TestCase):
     bool type_bool;
     string type_string;
 };
+
+foo bar
 """
         msg = message(stream)
         res = msg.parse()
@@ -29,8 +31,13 @@ class message_test(unittest.TestCase):
         msg = message(stream.strip())
         res = msg.parse()
         self.assertEqual(True, res[0])
+        self.assertEqual('foo bar', res[1])
         self.assertEqual('msg_id', msg.id)
         self.assertEqual(2, len(msg.types))
+        self.assertEqual('bool', msg.types[0].type)
+        self.assertEqual('type_bool', msg.types[0].name)
+        self.assertEqual('string', msg.types[1].type)
+        self.assertEqual('type_string', msg.types[1].name)
 
 if __name__ == '__main__':
     unittest.main()

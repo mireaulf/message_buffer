@@ -21,7 +21,6 @@ class message(parsable):
             stream = res[1].strip()
         return stream
         
-
     def parse(self):
         res_parse = parsable.parse(self)
         res = res_parse
