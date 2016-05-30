@@ -19,5 +19,5 @@ class type(parsable):
         if res[0]:
             self.type = res[1].group(1)
             self.name = res[1].group(2)
-            res = (res[0], self.regex.sub('', self.stream))
+            res = (res[0], self.regex.sub('', self.stream, 1))
         return res

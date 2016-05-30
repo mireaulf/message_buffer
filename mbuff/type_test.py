@@ -32,10 +32,12 @@ class type_test(unittest.TestCase):
         res = t.parse()
         self.assertEqual(False, res[0])
         self.assertEqual(None, res[1])
-
-    def test_parse(self):        
-        for t in type.types:
-            self.parse(t)
-
+        for ts in type.types:
+            self.parse(ts)
+        t = type('bool x;string str;')
+        res = t.parse()
+        self.assertEqual(True, res[0])
+        self.assertEqual('string str;', res[1])
+        
 if __name__ == '__main__':
     unittest.main()
