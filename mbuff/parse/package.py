@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import re
-from parsable import parsable
-from message import message
+from parse.parsable import parsable
+from parse.message import message
 
 class package(parsable):
     def __init__(self, stream):

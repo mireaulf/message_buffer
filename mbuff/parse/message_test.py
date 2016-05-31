@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from message import message
+from parse.message import message
 
 class message_test(unittest.TestCase):
     def test_init(self):

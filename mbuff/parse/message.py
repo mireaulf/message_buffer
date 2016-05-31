@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import re
-from parsable import parsable
-from type import type
+from parse.parsable import parsable
+from parse.type import type
 
 class message(parsable):
     regex_start = 'message ([a-zA-Z0-9_]+)\s+{\s+'

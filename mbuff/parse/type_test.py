@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from type import type
+from parse.type import type
 
 class type_test(unittest.TestCase):
     def parse(self, type_type):

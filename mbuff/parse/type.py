@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import re
-from parsable import parsable
+from parse.parsable import parsable
 
 class type(parsable):
     types = ('bool', 'int8', 'int32', 'string')

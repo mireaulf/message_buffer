@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from package import package
+from parse.package import package
 
 class package_test(unittest.TestCase):
     def test_init(self):

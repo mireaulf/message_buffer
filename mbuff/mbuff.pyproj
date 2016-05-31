@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2f866c2d-6b14-4de8-b9d1-62eb98be43e4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>package.py</StartupFile>
+    <StartupFile>parse\package.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,29 +22,33 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="message_test.py">
+    <Compile Include="parse\message_test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="parsable_test.py">
+    <Compile Include="parse\parsable_test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="message.py">
+    <Compile Include="parse\message.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="parsable.py">
+    <Compile Include="parse\parsable.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="package.py" />
-    <Compile Include="package_test.py" />
-    <Compile Include="type.py">
+    <Compile Include="parse\package.py" />
+    <Compile Include="parse\package_test.py" />
+    <Compile Include="parse\type.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="type_test.py">
+    <Compile Include="parse\type_test.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="parse\__init__.py" />
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="parse\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import unittest
 import re
-from parsable import parsable
+from parse.parsable import parsable
 
 class parsable_test(unittest.TestCase):
     def test_init(self):
