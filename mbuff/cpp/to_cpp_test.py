@@ -21,18 +21,63 @@ class to_cpp_test(unittest.TestCase):
         return m
 
     def test_parse_type(self):
-        t = to_cpp_test.__get_type()
-        print(to_cpp.to_cpp(t))
+        with self.assertRaises(ValueError):
+            to_cpp.type(None, None)
+        t0 = to_cpp_test.__get_type()
+        with self.assertRaises(ValueError):
+            to_cpp.type(t0, None)
+        with self.assertRaises(ValueError):
+            to_cpp.type(None, '')
+        to_cpp.type(t0, '')
+        h0 = t0.hash
+        self.assertNotEqual(h0, None)
+        t1 = to_cpp_test.__get_type()
+        t1.name += ' '
+        to_cpp.type(t1, '')
+        h1 = t1.hash
+        self.assertNotEqual(h0, h1)
+        t2 = to_cpp_test.__get_type()
+        to_cpp.type(t2, ' ')
+        h2 = t2.hash
+        self.assertNotEqual(h0, h2)
+        self.assertNotEqual(h1, h2)
 
-    def test_parse_message(self):
-        m = to_cpp_test.__get_message()
-        print(to_cpp.to_cpp(m))
 
-    def test_parse_package(self):
-        p = package('')
-        p.name = 'pkg_name'
-        p.messages.append(to_cpp_test.__get_message())
-        print(to_cpp.to_cpp(p))
+    def test_message_parse(self):
+        with self.assertRaises(ValueError):
+            to_cpp.message(None, None)
+        m0 = to_cpp_test.__get_message()
+        with self.assertRaises(ValueError):
+            to_cpp.message(m0, None)
+        with self.assertRaises(ValueError):
+            to_cpp.message(None, '')
+        to_cpp.message(m0, '')
+        h0 = m0.hash
+        self.assertNotEqual(h0, None)
+        m1 = to_cpp_test.__get_message()
+        m1.id += ' '
+        to_cpp.message(m0, '')
+        h1 = m1.hash
+        self.assertNotEqual(h1, h0)
+        m2 = to_cpp_test.__get_message()
+        to_cpp.message(m2, ' ')
+        h2 = m2.hash
+        self.assertNotEqual(h0, h2)
+        self.assertNotEqual(h1, h2)
+    
+
+
+#        print(to_cpp.type(t))
+#
+#    def test_parse_message(self):
+#        m = to_cpp_test.__get_message()
+#        print(to_cpp.message(m))
+#
+#    def test_parse_package(self):
+#        p = package('')
+#        p.name = 'pkg_name'
+#        p.messages.append(to_cpp_test.__get_message())
+#        print(to_cpp.package(p))
 
 if __name__ == '__main__':
     unittest.main()
