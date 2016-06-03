@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from parse.type import type
+from mbuff.parse.type import type
 
 class type_test(unittest.TestCase):
     def parse(self, type_type):
@@ -13,7 +13,6 @@ class type_test(unittest.TestCase):
         self.assertEqual(None, res[1])
         t = type(stream.strip())
         res = t.parse()
-        print(res)
         self.assertEqual(True, res[0])
         self.assertEqual(rest, res[1])
         self.assertEqual(type_type, t.type)

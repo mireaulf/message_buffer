@@ -13,6 +13,7 @@ class parsable:
         if not isinstance(stream, str):
             raise TypeError('stream is not string')
         self.stream = stream
+
     def parse(self):
         search_res = self.regex.match(self.stream)
         found = search_res is not None

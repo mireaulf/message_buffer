@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import re
+import hashlib
 from parse.parsable import parsable
 from parse.type import type
 
@@ -11,6 +12,7 @@ class message(parsable):
         super().__init__(self.regex_start, stream)
         self.id = ''
         self.types = list()
+        self.hash = ''
  
     def parse_types(self, stream):
         while True:
@@ -27,6 +29,9 @@ class message(parsable):
         res = (False, None)
         if res_parse[0]:
             self.id = res_parse[1].group(1)
+            digest = hashlib.sha256()
+            digest.update(self.id.encode())
+            self.hash = digest.hexdigest()
             stream = self.regex.sub('', self.stream.strip(), 1)
             res_parse_types = self.parse_types(stream)
             match = self.regex_end.match(res_parse_types)
