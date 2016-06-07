@@ -16,15 +16,17 @@ class type(parsable):
         self.name = ''
         self.hash = ''
 
+    def __cmp__(self, other):
+        return self.type == other.type and self.name == other.name
+
+    def __eq__(self, other):
+        return self.__cmp__(other)
+
     def parse(self):
         res_parse = parsable.parse(self)
         res = res_parse
         if res[0]:
             self.type = res[1].group(1)
             self.name = res[1].group(2)
-            digest = hashlib.sha256()
-            digest.update(self.type.encode())
-            digest.update(self.name.encode())
-            self.hash = digest.hexdigest()
             res = (res[0], self.regex.sub('', self.stream, 1))
         return res

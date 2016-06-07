@@ -35,7 +35,7 @@ class to_cpp_test(unittest.TestCase):
             to_cpp.type(t0, None)
         with self.assertRaises(ValueError):
             to_cpp.type(None, '')
-        to_cpp.type(t0, '')
+        print(to_cpp.type(t0, ''))
         h0 = t0.hash
         self.assertNotEqual(h0, None)
         t1 = to_cpp_test.__get_type()
@@ -57,7 +57,7 @@ class to_cpp_test(unittest.TestCase):
             to_cpp.message(m0, None)
         with self.assertRaises(ValueError):
             to_cpp.message(None, '')
-        to_cpp.message(m0, '')
+        print(to_cpp.message(m0, ''))
         h0 = m0.hash
         self.assertNotEqual(h0, None)
         m1 = to_cpp_test.__get_message()
@@ -75,17 +75,17 @@ class to_cpp_test(unittest.TestCase):
         with self.assertRaises(ValueError):
             to_cpp.package(None)
         p0 = to_cpp_test.__get_package()
-        to_cpp.package(p0)
+        print(to_cpp.package(p0))
         h0 = p0.hash
         p1 = to_cpp_test.__get_package()
         to_cpp.package(p1)
         h1 = p1.hash
         self.assertEqual(h0, h1)
         p1.messages.append(to_cpp_test.__get_message())
-        to_cpp.package(p1)
+        print(to_cpp.package(p1))
         h2 = p1.hash
-        self.assertNotEqual(h2, h0)
-        self.assertNotEqual(h2, h1)
+        self.assertNotEqual(h0, h2)
+        self.assertNotEqual(h1, h2)
 
 if __name__ == '__main__':
     unittest.main()

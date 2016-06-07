@@ -55,5 +55,30 @@ message msg_id1 {
         self.assertEqual('msg_id0', pkg.messages[0].id)
         self.assertEqual('msg_id1', pkg.messages[1].id)
 
+    def test_equals(self):
+        stream = """package foobar;
+message msg_id0 {
+    bool b;
+};
+};"""   
+        pkg0 = package(stream)
+        pkg0.parse()
+        pkg1 = package(stream)
+        pkg1.parse()
+        self.assertEqual(pkg0, pkg1)
+
+    def test_parse_duplicates(self):
+        stream = """package foobar;
+message msg_id0 {
+    bool b0;
+};
+message msg_id0 {
+    bool b1;
+};
+};"""   
+        pkg = package(stream)
+        with self.assertRaises(ValueError):
+            pkg.parse()
+
 if __name__ == '__main__':
     unittest.main()

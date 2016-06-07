@@ -37,7 +37,26 @@ foo bar
         self.assertEqual('bool', msg.types[0].type)
         self.assertEqual('type_bool', msg.types[0].name)
         self.assertEqual('string', msg.types[1].type)
-        self.assertEqual('type_string', msg.types[1].name)
+        self.assertEqual('type_string', msg.types[1].name)        
+
+    def test_equals(self):
+        stream = """message msg_id {
+bool type0;
+};"""
+        msg0 = message(stream)
+        msg0.parse()
+        msg1 = message(stream)
+        msg1.parse()
+        self.assertEqual(msg0, msg1)
+
+    def test_parse_duplicates(self):
+        stream = """message msg_id {
+bool type0;
+bool type0;
+};"""
+        msg = message(stream)
+        with self.assertRaises(ValueError):
+            msg.parse()
 
 if __name__ == '__main__':
     unittest.main()

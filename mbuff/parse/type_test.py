@@ -37,6 +37,15 @@ class type_test(unittest.TestCase):
         res = t.parse()
         self.assertEqual(True, res[0])
         self.assertEqual('string str;', res[1])
+
+    def test_equals(self):
+        t0 = type('')
+        t0.name = 'name';
+        t0.type = 'bool';
+        t1 = type('')
+        t1.name = 'name';
+        t1.type = 'bool';
+        self.assertEqual(t0, t1)
         
 if __name__ == '__main__':
     unittest.main()
