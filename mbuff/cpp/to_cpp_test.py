@@ -20,6 +20,13 @@ class to_cpp_test(unittest.TestCase):
         m.types.append(to_cpp_test.__get_type())
         return m
 
+    @staticmethod
+    def __get_package():
+        p = package('')
+        p.name = 'pkg_name'
+        p.messages.append(to_cpp_test.__get_message())
+        return p
+
     def test_parse_type(self):
         with self.assertRaises(ValueError):
             to_cpp.type(None, None)
@@ -41,7 +48,6 @@ class to_cpp_test(unittest.TestCase):
         h2 = t2.hash
         self.assertNotEqual(h0, h2)
         self.assertNotEqual(h1, h2)
-
 
     def test_message_parse(self):
         with self.assertRaises(ValueError):
@@ -65,19 +71,21 @@ class to_cpp_test(unittest.TestCase):
         self.assertNotEqual(h0, h2)
         self.assertNotEqual(h1, h2)
     
-
-
-#        print(to_cpp.type(t))
-#
-#    def test_parse_message(self):
-#        m = to_cpp_test.__get_message()
-#        print(to_cpp.message(m))
-#
-#    def test_parse_package(self):
-#        p = package('')
-#        p.name = 'pkg_name'
-#        p.messages.append(to_cpp_test.__get_message())
-#        print(to_cpp.package(p))
+    def test_package_test(self):
+        with self.assertRaises(ValueError):
+            to_cpp.package(None)
+        p0 = to_cpp_test.__get_package()
+        to_cpp.package(p0)
+        h0 = p0.hash
+        p1 = to_cpp_test.__get_package()
+        to_cpp.package(p1)
+        h1 = p1.hash
+        self.assertEqual(h0, h1)
+        p1.messages.append(to_cpp_test.__get_message())
+        to_cpp.package(p1)
+        h2 = p1.hash
+        self.assertNotEqual(h2, h0)
+        self.assertNotEqual(h2, h1)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from mbuff.parse.type import type as type_type
 from mbuff.parse.message import message as message_type
-from mbuff.parse.package import package
+from mbuff.parse.package import package as package_type 
 import hashlib
 
 class to_cpp:
@@ -26,6 +26,16 @@ class to_cpp:
         h.update(hint.encode())
         o.hash = h.hexdigest()
 
+    @staticmethod
+    def package(o:package_type):
+        if o is None:
+            raise ValueError('invalid arguments')
+        h = hashlib.sha256()
+        for m in o.messages:
+            to_cpp.message(m, o.name)
+            h.update(m.hash.encode())
+        o.hash = h.hexdigest()
+        
         
 #        out = """
 #// {2}
